@@ -1,0 +1,29 @@
+gene_id	description	deformable_vs_mixed	exfl_detected_vs_not_detected	infected_mosq_high_vs_low	oocy_detected_vs_not_detected	Cluster
+PF3D7_0209200	exosome complex component MTR3, putative	-1	0	0	1	9
+PF3D7_0218000	replication factor C subunit 2, putative	-1	1	0	1	32
+PF3D7_0628400	protease, putative	-1	1	0	0	217
+PF3D7_0706700	DNA mismatch repair protein MSH2, putative	-1	1	0	0	NA
+PF3D7_0715100	C-Myc-binding protein, putative	-1	1	0	0	46
+PF3D7_0828300	conserved protein, unknown function	-1	1	0	0	73
+PF3D7_0903900	60S ribosomal protein L32	-1	1	0	0	9
+PF3D7_0936500	virulence-associated protein 1	-1	1	0	1	125
+PF3D7_1003100	respiratory chain complex 4 associated protein 3	-1	1	0	0	NA
+PF3D7_1007000	transmembrane protein 147, putative	-1	0	0	1	55
+PF3D7_1017000	DNA polymerase delta catalytic subunit	-1	1	0	0	146
+PF3D7_1128400	bifunctional farnesyl/geranylgeranyl diphosphate synthase	-1	1	0	0	96
+PF3D7_1142500	60S ribosomal protein L28	-1	0	0	1	9
+PF3D7_1145700	bicoid-interacting protein BIN3, putative	-1	1	0	0	82
+PF3D7_1202200	mitochondrial phosphate carrier protein	-1	1	0	0	108
+PF3D7_1241200	conserved Plasmodium protein, unknown function	-1	1	0	0	223
+PF3D7_1243000	syntaxin-16, putative	-1	0	0	1	27
+PF3D7_1249200	conserved Plasmodium protein, unknown function	-1	1	0	0	177
+PF3D7_1304100	DNA ligase I	-1	0	0	1	72
+PF3D7_1322300	BRCT domain-containing protein, putative	-1	1	0	0	146
+PF3D7_1343500	conserved protein, unknown function	-1	1	0	1	27
+PF3D7_1415800	ribosomal RNA small subunit methyltransferase A1	-1	1	0	0	100
+PF3D7_1430500	conserved Plasmodium protein, unknown function	-1	1	0	0	164
+PF3D7_1434200	calmodulin	-1	1	0	0	101
+PF3D7_1442000	ADP-ribosylation factor, putative	-1	1	0	0	48
+PF3D7_1473300	CKK domain-containing protein, putative	-1	1	0	0	165
+PF3D7_1477700	Plasmodium exported protein (PHISTa), unknown function	-1	1	0	0	125
+

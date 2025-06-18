@@ -1,0 +1,24 @@
+bioconductor-annotationforge =1.42.2
+bioconductor-clusterprofiler =4.8.1
+bioconductor-complexheatmap =2.16.0
+bioconductor-deseq2 =1.40.2
+bioconductor-edger =3.42.4
+bioconductor-sva =3.48.0
+mcl 
+r-argparse=2.2.2
+r-ashr =2.2_63
+r-corrplot =0.92
+r-data.table =1.14.8
+r-dendextend =1.17.1
+r-desctools =0.99.50
+r-ggbeeswarm =0.7.2
+r-ggplot2 =3.4.3
+r-ggrepel =0.9.3
+r-kernsmooth =2.23_22
+r-metap =1.1
+r-qgraph =1.9.5
+r-r.utils
+r-statmod
+r-umap
+r-upsetr =1.4.0
+snakemake =7.16.0
