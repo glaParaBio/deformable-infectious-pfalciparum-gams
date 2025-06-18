@@ -19,7 +19,6 @@ conda install -n 20210128_matt_infection --yes --file requirements.txt
 ## Run
 
 ```
-# DATADIR=/export/projects/III-data/wcmp_bioinformatics/db291g/data/20210128_matt_infection
 DATADIR=~/sharedscratch/data/20210128_matt_infection
 
 snakemake -p -n -j 10 \
