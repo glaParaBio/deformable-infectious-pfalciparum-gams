@@ -23,19 +23,12 @@ conda install -n 20210128_matt_infection --yes --file requirements.txt
 DATADIR=~/sharedscratch/data/20210128_matt_infection
 
 snakemake -p -n -j 10 \
-    --cluster 'sbatch --cpus-per-task=10 --mem=5G --parsable -o slurm/{rule}.{jobid}.out -e slurm/{rule}.{jobid}.err' \
-    --cluster-cancel scancel \
     --latency-wait 60 \
     -C rna_ss=$DATADIR/deformability/RNAseq_master_samples.csv \
-       counts=$DATADIR/deformability/counts/ \
+       counts=$DATADIR/deformability/counts \
        candidate_genes=$PWD/candidate_genes.tsv \
-       #clstData=$DATADIR/allDatasets/tablesWithVoss/geneData.tsv \
-       #peakAll=$DATADIR/allDatasets/tablesWithVoss/peaksofMeanAll.tsv \
-       #peakVoss=$DATADIR/vossOnly/vossTables/peaksofMeanAll.tsv \
-       #vossPcl=$DATADIR/inputFiles/filteredInput/voss.pcl.gz \
        pclDir=$DATADIR/inputFiles/filteredInput \
-       #deformability=$DATADIR/deformability/outputFiles/deformabilityResults.tsv \
-       #pelle=~/git_repos/glaParaBio/dariober/unsorted/20210406_annotate_pelle/output/pelle_clusters_plasmodb.tsv \
-       #allGenesOldIds=$DATADIR/inputFiles/allGenesOldIds.txt \
+       clstData=$DATADIR/allDatasets/tablesWithVoss/geneData.tsv \
+       vossPcl=$DATADIR/inputFiles/filteredInput/voss.pcl.gz \
     -d output
 ```
