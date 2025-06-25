@@ -5,21 +5,23 @@
 
 <!-- vim-markdown-toc -->
 
+*Work in progress*
+
 ## Set up environment
 
 Best: Use conda/bioconda to create a separate environment and install the
 project dependencies listed in requirements.txt:
 
 ```
-conda create --yes -n 20210128_matt_infection
-conda activate 20210128_matt_infection
-conda install -n 20210128_matt_infection --yes --file requirements.txt
+conda create --yes -n deformable-infectious-pfalciparum-gams
+conda activate deformable-infectious-pfalciparum-gams
+conda install -n deformable-infectious-pfalciparum-gams --yes --file requirements.txt
 ```
 
 ## Run
 
 ```
-DATADIR=~/sharedscratch/data/20210128_matt_infection
+DATADIR=~/sharedscratch/data/deformable-infectious-pfalciparum-gams
 
 snakemake -p -n -j 10 \
     --latency-wait 60 \

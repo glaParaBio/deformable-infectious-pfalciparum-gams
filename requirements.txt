@@ -4,7 +4,6 @@ bioconductor-complexheatmap =2.16.0
 bioconductor-deseq2 =1.40.2
 bioconductor-edger =3.42.4
 bioconductor-sva =3.48.0
-mcl 
 r-argparse=2.2.2
 r-ashr =2.2_63
 r-corrplot =0.92
@@ -19,6 +18,5 @@ r-metap =1.1
 r-qgraph =1.9.5
 r-r.utils
 r-statmod
-r-umap
 r-upsetr =1.4.0
 snakemake =7.16.0
