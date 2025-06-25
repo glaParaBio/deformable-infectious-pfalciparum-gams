@@ -8,7 +8,7 @@ parse_sample_sheet <- function(RNAseq_master_samples){
     ss <- copy(RNAseq_master_samples)
     # It appears that the value of "Day" is not the same across all samples. We add
     # an index variable to indicate which samples belong to the same subset
-    ss[, day_offset := ifelse(!is.na(deformability), 'deform_exfl', 'only_infect')]
+    # ss[, day_offset := ifelse(!is.na(deformability), 'deform_exfl', 'only_infect')]
 
 
     # From Deepali 13/06/2025
@@ -17,10 +17,10 @@ parse_sample_sheet <- function(RNAseq_master_samples){
     #  point have the same values so somehow someone must have copied them
     #  over. We should go through any other samples where downstream sample
     #  exflagellation values were included and remove them from analysis.
-    ss[, exfl_XA_per_ml := ifelse(deformability == 'down' & !is.na(deformability), NA, exfl_XA_per_ml)]
+    # ss[, exfl_XA_per_ml := ifelse(deformability == 'down' & !is.na(deformability), NA, exfl_XA_per_ml)]
 
-    ss <- ss[strain == 'NF54']
-    ss <- ss[!is.na(exfl_XA_per_ml) | !is.na(inf_mosq_percent) | !is.na(oocysts_per_mosq) |!is.na(deformability)]
+    # ss <- ss[strain == 'NF54']
+    # ss <- ss[!is.na(exfl_XA_per_ml) | !is.na(inf_mosq_percent) | !is.na(oocysts_per_mosq) |!is.na(deformability)]
 
     ss[, deformability := ifelse(is.na(deformability), NA,
         ifelse(deformability == 'up', 0,
@@ -31,8 +31,8 @@ parse_sample_sheet <- function(RNAseq_master_samples){
 
     lss <- melt(data= ss[, list(Day, sample_ID, plate, day_offset,
         `log2(Exflagellation/ml)`= log2_exfl_XA_per_ml, 
-        `% Infected mosquitoes`= inf_mosq_percent, 
-        `Oocysts per mosquito`= oocysts_per_mosq,
+        `% Infected mosquitoes`= as.numeric(inf_mosq_percent), 
+        `Oocysts per mosquito`= as.numeric(oocysts_per_mosq),
         Deformability = deformability)], 
         id.vars= c('sample_ID', 'Day', 'plate', 'day_offset'), variable.name= 'trait', value.name= 'value')
     suppressWarnings(lss[, Day := as.numeric(as.character(Day))])

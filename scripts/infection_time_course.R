@@ -7,7 +7,6 @@ source(file.path(snakemake@scriptdir, 'utils.R'))
 ss <- fread(snakemake@input[['ss']]) 
 
 lss <- parse_sample_sheet(ss) 
-fwrite(x=lss, file=snakemake@output[['tsv']], sep='\t')
 
 avg <- lss[, list(value= mean(value)), by= list(trait, Day, day_offset)]
 

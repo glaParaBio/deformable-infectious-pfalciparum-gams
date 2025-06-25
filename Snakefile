@@ -29,7 +29,6 @@ rule all:
         ## Supp Table and Figures
         "deseq/infect_dge.tsv.gz",
         "deseq/overlapping_dge.tsv.gz",
-        "results/deformability_infection_data.tsv",
         "gsea/go/infection_deformability.tsv.gz",
         "results/gex_pca_combatseq.pdf",
         "results/gex_pca_traits.pdf",
@@ -46,7 +45,6 @@ rule infection_time_course:
     output:
         only_infect="results/infection_time_course.only_infect.pdf",
         deform="results/infection_time_course.deform.pdf",
-        tsv="results/deformability_infection_data.tsv",
     script:
         os.path.join(workflow.basedir, "scripts/infection_time_course.R")
 
@@ -218,7 +216,7 @@ rule clusterprofiler:
         kegg_tsv="gsea/kegg/infection_deformability.tsv.gz",
     shell:
         r"""
-        {workflow.basedir}/scripts/clusterprofiler.r \
+        {workflow.basedir}/scripts/clusterprofiler.R \
             --dge {input.dge} \
             --orgdb `basename {input.dbi}` \
             --gsea-output-tsv {output.go_tsv} \
