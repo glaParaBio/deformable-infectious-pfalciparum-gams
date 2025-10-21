@@ -1,17 +1,4 @@
 sample_ID	Day	plate	exfl_XA_per_ml	inf_mosq_percent	oocysts_per_mosq	deformability	day_offset
-CUL002	5	2	115000	35	0.5	NA	only_infect
-CUL003	5	2	115000	NA	NA	NA	only_infect
-CUL004	5	2	85000	NA	NA	NA	only_infect
-CUL005	7	2	870000	95	3.5	NA	only_infect
-CUL006	7	2	445000	NA	NA	NA	only_infect
-CUL007	10	2	215000	NA	NA	NA	only_infect
-CUL008	10	2	750000	75	1.2	NA	only_infect
-CUL009	5	2	325000	NA	NA	NA	only_infect
-CUL010	5	2	265000	NA	NA	NA	only_infect
-CUL011	12	2	370000	20	0.2	NA	only_infect
-CUL012	12	2	360000	NA	NA	NA	only_infect
-CUL013	16	2	50000	0	0	NA	only_infect
-CUL015	16	2	65000	10	0.1	NA	only_infect
 CUL016	5	2	0	0	0	NA	only_infect
 CUL017	9	2	67000	85	1.8	NA	only_infect
 CUL018	12	2	37000	20	0.2	NA	only_infect

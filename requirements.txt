@@ -11,8 +11,12 @@ r-data.table =1.14.8
 r-dendextend =1.17.1
 r-desctools =0.99.50
 r-ggbeeswarm =0.7.2
-r-ggplot2 =3.4.3
+r-ggplot2 =3.5.2
 r-ggrepel =0.9.3
+r-lme4 =1.1_37
+r-emmeans =1.11.1
+r-pbkrtest =0.5.4
+r-lmertest =3.1_3
 r-kernsmooth =2.23_22
 r-metap =1.1
 r-qgraph =1.9.5
@@ -20,3 +24,4 @@ r-r.utils
 r-statmod
 r-upsetr =1.4.0
 snakemake =7.16.0
+setuptools =80.9.0
