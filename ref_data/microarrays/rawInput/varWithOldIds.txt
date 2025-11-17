@@ -1,0 +1,108 @@
+Gene ID	source_id	Product Description	Previous ID(s)	
+PF3D7_0100100	PF3D7_0100100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL1P4.01;PFA0005w	
+PF3D7_0100300	PF3D7_0100300.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL1P4.03;PFA0015c	
+PF3D7_0100500	PF3D7_0100500.1	erythrocyte membrane protein 1 (PfEMP1), exon 1, pseudogene	Previous IDs: MAL1P4.05;PFA0025c	
+PF3D7_0101500	PF3D7_0101500.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: MAL1P1.6;PFA0075w	
+PF3D7_0101700	PF3D7_0101700.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: MAL1P1.8;PFA0085c	
+PF3D7_0114400	PF3D7_0114400.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: MAL1P4.16c;PFA0695c	
+PF3D7_0115500	PF3D7_0115500.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: PFA0755w	
+PF3D7_0115700	PF3D7_0115700.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL1P4.29;PFA0765c	
+PF3D7_0200100	PF3D7_0200100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF02_0001;PFB0010w	
+PF3D7_0200300	PF3D7_0200300.1	erythrocyte membrane protein 1 (PfEMP1), exon 2	Previous IDs: PF02_0003;PFB0020c	
+PF3D7_0200800	PF3D7_0200800.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: PF02_0008;PFB0045c	
+PF3D7_0221800	PF3D7_0221800.1	hypothetical protein	Previous IDs: PF02_0203;PFB0972w	
+PF3D7_0221900	PF3D7_0221900.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: PF02_0204;PF02_0205;PF02_0206;PFB0973c;PFB0974c;PFB0975c	
+PF3D7_0222900	PF3D7_0222900.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: PF02_0217;PF02_0218;PF3D7_0223000;PFB1025w;PFB1030w	
+PF3D7_0223300	PF3D7_0223300.1	erythrocyte membrane protein 1 (PfEMP1), exon 2	Previous IDs: PF02_0221;PFB1045w	
+PF3D7_0223500	PF3D7_0223500.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF02_0223;PFB1055c	
+PF3D7_0300100	PF3D7_0300100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL3P8.1;PFC0005w	
+PF3D7_0300300	PF3D7_0300300.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: PFC0015c	
+PF3D7_0302300	PF3D7_0302300.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: MAL3P1.4;PFC0115c	
+PF3D7_0323900	PF3D7_0323900.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: MAL3P7.45;PFC1070c	
+PF3D7_0324700	PF3D7_0324700.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: PFC1110w	
+PF3D7_0324900	PF3D7_0324900.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL3P7.55;PFC1120c	
+PF3D7_0400100	PF3D7_0400100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL4P1.1;PFD0005w	
+PF3D7_0400200	PF3D7_0400200.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: MAL4P1.2;PFD0010w	
+PF3D7_0400400	PF3D7_0400400.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL4P1.4;PFD0020c	
+PF3D7_0400600	PF3D7_0400600.1	erythrocyte membrane protein 1 (PfEMP1), exon 1, pseudogene	Previous IDs: PFD0028w	
+PF3D7_0402800	PF3D7_0402800.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: MAL4P1.28;PFD0135w;PFD0140w	
+PF3D7_0412400	PF3D7_0412400.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL4P2.56;PFD0615c	
+PF3D7_0412700	PF3D7_0412700.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL4P2.58;PFD0625c	
+PF3D7_0412900	PF3D7_0412900.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PFD0630c	
+PF3D7_0413100	PF3D7_0413100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PFD0635c	
+PF3D7_0413400	PF3D7_0413400.1	erythrocyte membrane protein 1 (PfEMP1), exon 1, pseudogene	Previous IDs: MAL4P1.126;PFD0655w	
+PF3D7_0420700	PF3D7_0420700.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL4P1.194;PFD0995c	
+PF3D7_0420900	PF3D7_0420900.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL4P1.195;PFD1000c	
+PF3D7_0421100	PF3D7_0421100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL4P1.196;PFD1005c	
+PF3D7_0421300	PF3D7_0421300.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL4P1.198;PFD1015c	
+PF3D7_0421600	PF3D7_0421600.1	erythrocyte membrane protein 1 (PfEMP1)-like pseudogene	Previous IDs: MAL4P1.200;PFD1025w	
+PF3D7_0425800	PF3D7_0425800.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL4P1.242;MAL7P1.1;MAL8P1.207;PFD1235w	
+PF3D7_0426000	PF3D7_0426000.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL4P1.244;PFD1245c	
+PF3D7_0500100	PF3D7_0500100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL5P1.2;PFE0005w	
+PF3D7_0500200	PF3D7_0500200.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: MAL5P1.3;PFE0010c	
+PF3D7_0532700	PF3D7_0532700.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: MAL5P1.318;MAL5P1.319;PFE1620c;PFE1625c	
+PF3D7_0533100	PF3D7_0533100.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: MAL5P1.322;PFE1640w	
+PF3D7_0600100	PF3D7_0600100.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: 2270.t00001;MAL6P1.317;PFF0005c	
+PF3D7_0600200	PF3D7_0600200.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2270.t00002;MAL6P1.316;PFF0010w	
+PF3D7_0600400	PF3D7_0600400.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2270.t00005;MAL6P1.314;PFF0020c	
+PF3D7_0600600	PF3D7_0600600.1	erythrocyte membrane protein 1 (PfEMP1), exon 2	Previous IDs: 2270.t00007;MAL6P1.312;PFF0030c	
+PF3D7_0601400	PF3D7_0601400.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: PFF0070w	
+PF3D7_0617400	PF3D7_0617400.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2270.t00065;MAL6P1.252;PFF0845c	
+PF3D7_0631200	PF3D7_0631200.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: 2270.t00305;2270.t00307;MAL6P1.17;MAL6P1.18;PFF1515c	
+PF3D7_0632500	PF3D7_0632500.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2270.t00320;MAL6P1.4;PFF1580c	
+PF3D7_0632800	PF3D7_0632800.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2270.t00323;MAL6P1.1;PFF1595c	
+PF3D7_0700100	PF3D7_0700100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL8P1.220	
+PF3D7_0701000	PF3D7_0701000.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: MAL8P1.209;MAL8P1.211	
+PF3D7_0711700	PF3D7_0711700.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF07_0048	
+PF3D7_0712000	PF3D7_0712000.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF07_0049	
+PF3D7_0712300	PF3D7_0712300.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL7P1.50	
+PF3D7_0712400	PF3D7_0712400.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF07_0050	
+PF3D7_0712600	PF3D7_0712600.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF07_0051	
+PF3D7_0712800	PF3D7_0712800.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL7P1.55	
+PF3D7_0712900	PF3D7_0712900.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL7P1.56	
+PF3D7_0713300	PF3D7_0713300.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: MAL7P1.60;MAL7P1.61;MAL7P1.62;MAL7P1.63	
+PF3D7_0732100	PF3D7_0732100.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: MAL7P1.183;PF07_0131	
+PF3D7_0732800	PF3D7_0732800.1	erythrocyte membrane protein 1 (PfEMP1), exon 2	Previous IDs: MAL7P1.186;MAL7P1.211;PF07_0137	
+PF3D7_0733000	PF3D7_0733000.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL7P1.187;PF07_0139	
+PF3D7_0800100	PF3D7_0800100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL8P1.168;PF08_0142	
+PF3D7_0800200	PF3D7_0800200.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL8P1.167;PF08_0141	
+PF3D7_0800300	PF3D7_0800300.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL8P1.166;PF08_0140	
+PF3D7_0808600	PF3D7_0808600.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL8P1.119;PF08_0107	
+PF3D7_0808700	PF3D7_0808700.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL8P1.118;PF08_0106	
+PF3D7_0809100	PF3D7_0809100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF08_0103	
+PF3D7_0833300	PF3D7_0833300.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: MAL7P1.214	
+PF3D7_0833500	PF3D7_0833500.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL7P1.212	
+PF3D7_0900100	PF3D7_0900100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PFI0005w	
+PF3D7_0900800	PF3D7_0900800.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: PFI0040c	
+PF3D7_0937600	PF3D7_0937600.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PFI1820w	
+PF3D7_0937800	PF3D7_0937800.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PFI1830c	
+PF3D7_1000100	PF3D7_1000100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF10_0001	
+PF3D7_1000900	PF3D7_1000900.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: PF10_0011;PF10_0012	
+PF3D7_1035700	PF3D7_1035700.1	duffy binding-like merozoite surface protein	Previous IDs: PF10_0348	
+PF3D7_1039400	PF3D7_1039400.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: PF10_0384;PF10_0385;PF10_0387	
+PF3D7_1041300	PF3D7_1041300.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 1398.t00021;PF10_0406	
+PF3D7_1100100	PF3D7_1100100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF11_0007	
+PF3D7_1100200	PF3D7_1100200.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF11_0008	
+PF3D7_1101000	PF3D7_1101000.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: PF11_0522	
+PF3D7_1101900	PF3D7_1101900.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: PF11_0523	
+PF3D7_1150400	PF3D7_1150400.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF11_0521	
+PF3D7_1200100	PF3D7_1200100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2277.t00001;MAL12P1.1;PFL0005w	
+PF3D7_1200400	PF3D7_1200400.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2277.t00004;MAL12P1.4;PFL0020w	
+PF3D7_1200600	PF3D7_1200600.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2277.t00006;MAL12P1.6;PFL0030c	
+PF3D7_1219300	PF3D7_1219300.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2277.t00187;MAL12P1.188;PFL0935c	
+PF3D7_1219400	PF3D7_1219400.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: 2277.t00188;PF12_0001;PFL0940c	
+PF3D7_1219500	PF3D7_1219500.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: 2277.t00189;PF12_0002;PFL0945w	
+PF3D7_1240200	PF3D7_1240200.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: PFL1947c	
+PF3D7_1240300	PF3D7_1240300.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2277.t00390;MAL12P1.388;PFL1950w	
+PF3D7_1240400	PF3D7_1240400.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2277.t00391;MAL12P1.389;PFL1955w	
+PF3D7_1240600	PF3D7_1240600.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2277.t00392;MAL12P1.390;PFL1960w	
+PF3D7_1240900	PF3D7_1240900.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2277.t00394;MAL12P1.392;PFL1970w	
+PF3D7_1255200	PF3D7_1255200.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: 2277.t00531;MAL12P1.528;PFL2665c	
+PF3D7_1300100	PF3D7_1300100.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL13P1.1;PF13_0001	
+PF3D7_1300300	PF3D7_1300300.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: PF13_0003	
+PF3D7_1300800	PF3D7_1300800.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: MAL13P1.6	
+PF3D7_1372900	PF3D7_1372900.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	Previous IDs: MAL13P1.510	
+PF3D7_1373500	PF3D7_1373500.1	erythrocyte membrane protein 1, PfEMP1	Previous IDs: MAL13P1.356;PF13_0364	
+PF3D7_1400100	PF3D7_1400100.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: PF14_0001	
+PF3D7_1401050	PF3D7_1401050.1	erythrocyte membrane protein 1 (PfEMP1), exon 2, pseudogene	N/A	
+PF3D7_1480100	PF3D7_1480100.1	erythrocyte membrane protein 1 (PfEMP1), pseudogene	Previous IDs: PF14_0773	

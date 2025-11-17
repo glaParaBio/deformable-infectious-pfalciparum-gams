@@ -1,6 +1,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Set up environment](#set-up-environment)
+* [Data preparation](#data-preparation)
 * [Run](#run)
 
 <!-- vim-markdown-toc -->
@@ -18,6 +19,21 @@ conda activate deformable-infectious-pfalciparum-gams
 conda install -n deformable-infectious-pfalciparum-gams --yes --file requirements.txt
 ```
 
+## Data preparation
+
+Not included in Snakefile:
+
+```
+Rscript scripts/microarray_filtering.R
+
+cd ref_data/microarrays/filteredInput
+ln -s leRoux.pcl Joiceetaldata.pcl
+```
+
+```
+Rscript scripts/makeClusters.R
+```
+
 ## Run
 
 ```
@@ -28,9 +44,9 @@ snakemake -p -n -j 10 \
     -C rna_ss=$PWD/ref_data/deformability_infection_data.tsv \
        counts=$DATADIR/deformability/counts \
        candidate_genes=$PWD/ref_data/candidate_genes.tsv \
-       pclDir=$DATADIR/inputFiles/filteredInput \
-       clstData=$DATADIR/allDatasets/tablesWithVoss/geneData.tsv \
-       vossPcl=$DATADIR/inputFiles/filteredInput/voss.pcl.gz \
-       allGenesOldIds=$DATADIR/inputFiles/allGenesOldIds.txt \
+       pclDir=$PWD/ref_data/microarrays/filteredInput \
+       clstData=$PWD/ref_data/geneData.tsv \
+       vossPcl=$PWD/ref_data/microarrays/filteredInput/voss.pcl.gz \
+       allGenesOldIds=$PWD/allGenesOldIds.txt \
     -d output
 ```
