@@ -152,7 +152,7 @@ invertList <- function (i, x, n) {
   lapply(x[[i]], function(y, n){newList <- n; names(newList) <- y; return(newList)}, n=n[[i]])
 }
 
-idMappings <- read.table("ref_data/allGenesOldIds.txt", header=T, sep="\t", quote="")
+idMappings <- read.table("ref_data/microarrays/auxiliary_files/allGenesOldIds.txt", header=T, sep="\t", quote="")
 oldIdList <- lapply(as.character(idMappings$Previous.ID.s.), getOldIds)
 names(oldIdList) <- idMappings$Gene.ID
 
@@ -160,7 +160,7 @@ oldIdList <- unlist(lapply(seq_along(oldIdList), invertList, x=oldIdList, n=name
 
 #Gene Products
 
-allGeneProducts <- read.table("ref_data/GeneProducts.txt", sep="\t", header=T, quote="")
+allGeneProducts <- read.table("ref_data/microarrays/auxiliary_files/GeneProducts.txt", sep="\t", header=T, quote="")
 
 geneData <- merge(genes, allGeneProducts, by.x="GeneIds", by.y="X.Gene.ID.", no.dups=F)
 geneData <- as.data.frame(cbind(as.character(geneData$GeneIds), as.character(geneData$X.Product.Description.)))

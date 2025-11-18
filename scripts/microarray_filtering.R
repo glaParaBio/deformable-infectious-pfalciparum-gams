@@ -70,7 +70,7 @@ invertList <- function (i, x, n) {
   lapply(x[[i]], function(y, n){newList <- n; names(newList) <- y; return(newList)}, n=n[[i]])
 }
 
-idMappings <- read.table("ref_data/microarrays/rawInput/allGenesOldIds.txt", header=T, sep="\t", quote="")
+idMappings <- read.table("ref_data/microarrays/auxiliary_files/allGenesOldIds.txt", header=T, sep="\t", quote="")
 oldIdList <- lapply(as.character(idMappings$Previous.ID.s.), getOldIds)
 names(oldIdList) <- idMappings$Gene.ID
 

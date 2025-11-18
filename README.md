@@ -47,6 +47,6 @@ snakemake -p -n -j 10 \
        pclDir=$PWD/ref_data/microarrays/filteredInput \
        clstData=$PWD/ref_data/geneData.tsv \
        vossPcl=$PWD/ref_data/microarrays/filteredInput/voss.pcl \
-       allGenesOldIds=$PWD/allGenesOldIds.txt \
+       allGenesOldIds=$PWD/ref_data/microarrays/auxiliary_files/allGenesOldIds.txt \
     -d output
 ```
