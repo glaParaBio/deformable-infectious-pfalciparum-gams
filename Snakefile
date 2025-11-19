@@ -477,7 +477,7 @@ rule selected_clusters_in_patients:
     input:
         dge="deseq/infect_dge.tsv.gz",
         pcl=expand(
-            os.path.join(config["pclDir"], "%s.pcl.gz" % x)
+            os.path.join(config["pclDir"], "%s.pcl" % x)
             for x in ["Joiceetaldata", "milner"]
         ),  # 'daily', 
         gsea="gsea/gsea_clusters.tsv",
@@ -653,7 +653,7 @@ rule candidate_genes:
     input:
         ref="ref/Pfalciparum3D7.genes.tsv",
         pcl=expand(
-            os.path.join(config["pclDir"], "%s.pcl.gz" % x)
+            os.path.join(config["pclDir"], "%s.pcl" % x)
             for x in ["Joiceetaldata", "milner"]
         ),  # 'daily', 
         candidate_genes=config["candidate_genes"],
