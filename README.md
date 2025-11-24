@@ -35,12 +35,10 @@ Rscript scripts/makeClusters.R
 ## Run workflow
 
 ```
-DATADIR=~/sharedscratch/data/deformable-infectious-pfalciparum-gams
-
 snakemake -p -n -j 10 \
     --latency-wait 60 \
     -C rna_ss=$PWD/ref_data/deformability_infection_data.tsv \
-       counts=$DATADIR/deformability/counts \
+       counts=$PWD/ref_data/counts \
        candidate_genes=$PWD/ref_data/candidate_genes.tsv \
        pclDir=$PWD/ref_data/microarrays/filteredInput \
        clstData=$PWD/ref_data/geneData.tsv \

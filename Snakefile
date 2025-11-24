@@ -574,18 +574,18 @@ cols <- rep('grey30', length(unique(dataset)))
 names(cols) <- unique(dataset)
 cls_col <- HeatmapAnnotation(df=data.table(dataset=dataset), show_legend=FALSE, annotation_label='', which='column', col=list(dataset=cols), simple_anno_size = unit(1, "mm"))
 
-pdf('{output.hm}', height=(0.05 * nrow(mat))/2.54, width=45/2.54)
+pdf('{output.hm}', height=(0.05 * nrow(mat))/2.54, width=20/2.54)
 Heatmap(mat, name='Z-score\nof gene\nexpression',
     row_split=Clusters,
     row_labels=rep('', nrow(mat)),
     column_split=dataset,
     column_title=unique(dataset),
-    # column_labels=rep('', ncol(mat)), 
+    column_labels=rep('', ncol(mat)),
     row_title_rot=0,
     row_order=rownames(mat),
     left_annotation=cls,
     top_annotation=cls_col,
-    cluster_columns=FALSE, 
+    cluster_columns=FALSE,
     cluster_rows=FALSE)
 dev.off()
 
@@ -722,14 +722,14 @@ cols <- rep('grey30', length(unique(dataset)))
 names(cols) <- unique(dataset)
 cls_col <- HeatmapAnnotation(df=data.table(dataset=dataset), show_legend=FALSE, annotation_label='', which='column', col=list(dataset=cols), simple_anno_size = unit(1, "mm"))
 
-pdf('{output.hm}', height=16/2.54, width=45/2.54)
-Heatmap(mat, name='Z-score\nof gene\nexpression', 
+pdf('{output.hm}', height=16/2.54, width=18/2.54)
+Heatmap(mat, name='Z-score\nof gene\nexpression',
     column_split=dataset,
     column_title=unique(dataset),
-    # column_labels=rep('', ncol(mat)), 
+    column_labels=rep('', ncol(mat)),
     row_title_rot=0,
     top_annotation=cls_col,
-    cluster_columns=FALSE, 
+    cluster_columns=FALSE,
     cluster_rows=TRUE)
 dev.off()
 EOF
