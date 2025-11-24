@@ -21,6 +21,7 @@ rule all:
         "results/gex_logfc.pdf",
         "results/dge_trait_corr.pdf",
         "gsea/go/infection_deformability.pdf",
+        "results/upset_dge.pdf",
         ## Figure 4
         "results/gsea_clusters.pdf",
         ## Figure 5
