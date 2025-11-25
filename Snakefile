@@ -37,6 +37,12 @@ rule all:
         "results/voss_time_course_heatmap_shared.pdf",
         "results/voss_time_course_heatmap_gam.pdf",
         "results/voss_time_course_selected.pdf",
+        'cluster_annotation/cluster_enrichment_wide.tsv',
+        "sexratio/markers_sex_defo.pdf",
+        'sexratio/markers_sex_infect.pdf',
+        'sexratio/markers_sex_ratio_voss.pdf',
+        'sexratio/markers_sex_voss.pdf',
+        'sexratio/markers_sex_ratio.pdf',
 
 
 rule microarray_filtering:
@@ -152,6 +158,27 @@ rule gaf:
         curl -s https://plasmodb.org/common/downloads/release-{PLASMODB_RELEASE}/Pfalciparum3D7/gaf/PlasmoDB-{PLASMODB_RELEASE}_Pfalciparum3D7_GO.gaf > {output.gaf}
         """
 
+rule tx_fasta:
+    output:
+        fa=f'ref/PlasmoDB-{PLASMODB_RELEASE}_Pfalciparum3D7_AnnotatedTranscripts.fasta'
+    shell:
+        r"""
+        curl -s https://plasmodb.org/common/downloads/release-{PLASMODB_RELEASE}/Pfalciparum3D7/fasta/data/PlasmoDB-{PLASMODB_RELEASE}_Pfalciparum3D7_AnnotatedTranscripts.fasta > {output.fa}
+        """
+
+rule sexratio:
+    input:
+        fa=f'ref/PlasmoDB-{PLASMODB_RELEASE}_Pfalciparum3D7_AnnotatedTranscripts.fasta',
+        vossPcl="microarrays/filteredInput/voss.pcl",
+        deseq_counts='deseq/counts.tsv.gz',
+    output:
+        markers_sex_defo="sexratio/markers_sex_defo.pdf",
+        markers_sex_infect='sexratio/markers_sex_infect.pdf',
+        markers_sex_ratio_voss='sexratio/markers_sex_ratio_voss.pdf',
+        markers_sex_voss='sexratio/markers_sex_voss.pdf',
+        markers_sex_ratio='sexratio/markers_sex_ratio.pdf',
+    script:
+        'scripts/sexratio.R'
 
 rule gene_descriptions:
     input:
@@ -790,6 +817,167 @@ Heatmap(mat, name='Z-score\nof gene\nexpression',
     cluster_columns=FALSE,
     cluster_rows=TRUE)
 dev.off()
+EOF
+Rscript {rule}.$$.tmp.R
+rm {rule}.$$.tmp.R
+        """
+
+
+rule annotate_clusters:
+    input:
+        clstData='makeClusters/geneData.tsv',
+        kc_class= os.path.join(workflow.basedir, 'ref_data/crouch_cluster_classification.tsv'),
+        pelle= config['pelle'],
+        brancucci= os.path.join(workflow.basedir, 'ref_data/Brancucci.sexual_commitment_markers.tsv'),
+        josling= os.path.join(workflow.basedir, 'ref_data/Josling.TableS4.tsv'),
+        mk= os.path.join(workflow.basedir, 'ref_data/Meerstein_Kessel.TableS4.tsv'),
+        dantzler= os.path.join(workflow.basedir, 'ref_data/Dantzler.tsv'),
+        miao= os.path.join(workflow.basedir, 'ref_data/miao.male_female_genes.tableS5.tsv'),
+    output:
+        geneData= temp('cluster_annotation/geneData.tsv'),
+        enrich= 'cluster_annotation/cluster_enrichment.tsv',
+    shell:
+        r"""
+cat <<'EOF' > {rule}.$$.tmp.R
+library(data.table)
+
+kc_clst <- fread('{input.clstData}')
+kc_class <- fread('{input.kc_class}')
+pelle <- fread('{input.pelle}')
+brancucci <- fread('{input.brancucci}')
+josling <- fread('{input.josling}')
+mk <- fread('{input.mk}')
+dantzler <- fread('{input.dantzler}')
+miao <- fread('{input.miao}')
+
+setnames(kc_clst, c('V1', 'V2'), c('gene_id', 'description'))
+
+pelle <- pelle[!is.na(stage) & !is.na(plasmodb_id), list(
+    stage= paste(sort(unique(stage)), collapse= ','), 
+    circulating_pvalue= paste(sort(unique(circulating_pvalue)), collapse= ','), 
+    sequestered_pvalue= paste(sort(unique(sequestered_pvalue)), collapse= ',')), 
+    by= plasmodb_id]
+
+ng <- nrow(kc_clst)
+clstData <- merge(kc_clst, kc_class[, list(Cluster, Classification= Consensus)], by= 'Cluster', all.x= TRUE, sort= FALSE)
+stopifnot(nrow(clstData) == ng)
+
+clstData <- merge(clstData, pelle[, list(plasmodb_id, pelle= stage, circulating_pvalue, sequestered_pvalue)], by.x= 'gene_id', by.y= 'plasmodb_id', all.x= TRUE, sort= FALSE)
+stopifnot(nrow(clstData) == ng)
+
+brancucci[, brancucci := 'commit_marker']
+clstData <- merge(clstData, brancucci[, list(gene_id, brancucci)], by= 'gene_id', all.x= TRUE)
+stopifnot(nrow(clstData) == ng)
+
+josling[, josling := 'gam_ap2g_target']
+clstData <- merge(clstData, unique(josling[, list(gene_id, josling)]), by= 'gene_id', all.x= TRUE)
+stopifnot(nrow(clstData) == ng)
+
+clstData <- merge(clstData, mk[, list(gene_id, meerstein_kessel= set_label)], by= 'gene_id', all.x= TRUE)
+stopifnot(nrow(clstData) == ng)
+
+clstData <- merge(clstData, dantzler[, list(gene_id, dantzler= stage)], by= 'gene_id', all.x= TRUE)
+stopifnot(nrow(clstData) == ng)
+
+clstData <- merge(clstData, miao[, list(gene_id, miao_sex= sex)], by= 'gene_id', all.x= TRUE)
+stopifnot(nrow(clstData) == ng)
+
+setcolorder(clstData, c('gene_id', 'Cluster', 'Classification'))
+clstData <- clstData[order(Cluster, Classification, gene_id)]
+
+write.table(clstData, '{output.geneData}', row.names= FALSE, sep= '\t', quote= FALSE)
+
+ksize <- clstData[, list(k_size= .N), by= Cluster]
+ann <- melt(data= clstData[, list(gene_id, Cluster, Classification, pelle, brancucci, josling, meerstein_kessel, dantzler, miao_sex)], id.vars= c('gene_id', 'Cluster', 'Classification'), value.name= 'annotation', variable.name= 'source')
+ann_size <- ann[!is.na(annotation), list(annotation_size= .N), by= list(source, annotation)]
+ann <- ann[, list(n_hits= .N), by= list(Cluster, Classification, source, annotation)][!is.na(annotation)]
+ann <- merge(ann, ksize, by= c('Cluster'), all.y= TRUE)
+ann <- merge(ann, ann_size, by= c('source', 'annotation'), all= TRUE)[order(Cluster, source, annotation)]
+ann[, pct_hits := 100 * n_hits/k_size]
+
+tot <- sum(unique(ann[, list(Cluster, k_size)])$k_size)
+f.test <- rep(NA, nrow(ann))
+for(i in 1:nrow(ann)) {{
+    d <- ann[i,]
+    m <- matrix(c(d$n_hits, d$annotation_size - d$n_hits,
+                  d$k_size - d$n_hits, tot - (d$k_size - d$n_hits) - (d$annotation_size - d$n_hits) - d$n_hits), nrow= 2, byrow= TRUE)
+    stopifnot(sum(m) == tot)
+    ft <- fisher.test(m, alternative= 'greater')
+    f.test[i] <- ft$p.value
+}}
+ann[, p.value := f.test]
+ann[, fdr := p.adjust(p.value, method= 'fdr')]
+ann <- ann[order(Cluster, fdr), list(Cluster, Classification, source, annotation, k_size, n_hits, annotation_size, pct_hits, p.value, fdr)]
+
+write.table(ann, '{output.enrich}', row.names= FALSE, sep= '\t', quote= FALSE)
+
+# Crouch vs Pelle supergroups
+cmp <- clstData[, list(n_common= .N), by= list(Classification, pelle)]
+kc <- clstData[, list(n_crouch= .N), Classification]
+pl <- clstData[, list(n_pelle= .N), pelle]
+cmp <- merge(cmp, kc, by= 'Classification')
+cmp <- merge(cmp, pl, by= 'pelle')
+setnames(cmp, c('Classification', 'pelle'), c('crouch_class', 'pelle_class'))
+setcolorder(cmp, c('crouch_class', 'pelle_class', 'n_crouch', 'n_pelle', 'n_common'))
+cmp[order(crouch_class, -n_common)][!grepl(',', pelle_class)]
+
+EOF
+Rscript {rule}.$$.tmp.R
+rm {rule}.$$.tmp.R
+    """
+
+rule cluster_table_to_wide_format:
+    input:
+        clstData='makeClusters/geneData.tsv',
+        tlong= 'cluster_annotation/cluster_enrichment.tsv',
+        peakAll=os.path.join(workflow.basedir, 'ref_data/peaksofMeanAll.tsv'),
+    output:
+        wide= 'cluster_annotation/cluster_enrichment_wide.tsv',
+    shell:
+        r"""
+cat <<'EOF' > {rule}.$$.tmp.R
+library(data.table)
+
+kc_clst <- fread('{input.clstData}', select= c('V1', 'Cluster'), col.names= c('gene_id', 'Cluster'))
+peakAll <- fread('{input.peakAll}', select= c('MinMax', 'Llinas.Timepoint', 'Voss.Timepoint', 'Cluster'))
+tlong <- fread('{input.tlong}')
+
+genes <- kc_clst[, list(gene_id= paste(sort(gene_id), collapse= ',')), by= Cluster]
+
+keep <- c(
+    'brancucci.commit_marker',
+    'dantzler.Asexual',
+    'dantzler.Gam',
+    'dantzler.Gam_Mo',
+    'dantzler.Mo',
+    'dantzler.Shared',
+    'josling.gam_ap2g_target',
+    'meerstein_kessel.gametocyte',
+    'meerstein_kessel.rest',
+    'pelle.circulating',
+    'pelle.gam_ring',
+    'pelle.imm_gam',
+    'pelle.mat_gam',
+    'pelle.sequestered',
+    'miao_sex.Male',
+    'miao_sex.Female'
+)
+
+tlong[, source_ann := paste(source, gsub(',|/', '_', annotation), sep= '.')]
+
+peakMax <- peakAll[MinMax == 'Max']
+peakMax[, MinMax := NULL]
+setnames(peakMax, c('Llinas.Timepoint', 'Voss.Timepoint'), c('Llinas.Timepoint.Max', 'Voss.Timepoint.Max'))
+
+ann <- tlong[source_ann %in% keep]
+ann <- merge(ann, peakMax, by= 'Cluster', all.x= TRUE)
+
+wide <- dcast(data= ann, Cluster + Classification + k_size + Llinas.Timepoint.Max + Voss.Timepoint.Max ~ source_ann, value.var= c('p.value', 'fdr'), sep= '.')
+
+wide <- merge(wide, genes, by= 'Cluster')
+
+write.table(wide, '{output.wide}', row.names= FALSE, sep= '\t', quote= FALSE)
+
 EOF
 Rscript {rule}.$$.tmp.R
 rm {rule}.$$.tmp.R
