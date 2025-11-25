@@ -1,29 +1,75 @@
-gene_id	description	deformable_vs_mixed	exfl_detected_vs_not_detected	infected_mosq_high_vs_low	oocy_detected_vs_not_detected	Cluster
-PF3D7_0209200	exosome complex component MTR3, putative	-1	0	0	1	9
-PF3D7_0218000	replication factor C subunit 2, putative	-1	1	0	1	32
-PF3D7_0628400	protease, putative	-1	1	0	0	217
-PF3D7_0706700	DNA mismatch repair protein MSH2, putative	-1	1	0	0	NA
-PF3D7_0715100	C-Myc-binding protein, putative	-1	1	0	0	46
-PF3D7_0828300	conserved protein, unknown function	-1	1	0	0	73
-PF3D7_0903900	60S ribosomal protein L32	-1	1	0	0	9
-PF3D7_0936500	virulence-associated protein 1	-1	1	0	1	125
-PF3D7_1003100	respiratory chain complex 4 associated protein 3	-1	1	0	0	NA
-PF3D7_1007000	transmembrane protein 147, putative	-1	0	0	1	55
-PF3D7_1017000	DNA polymerase delta catalytic subunit	-1	1	0	0	146
-PF3D7_1128400	bifunctional farnesyl/geranylgeranyl diphosphate synthase	-1	1	0	0	96
-PF3D7_1142500	60S ribosomal protein L28	-1	0	0	1	9
-PF3D7_1145700	bicoid-interacting protein BIN3, putative	-1	1	0	0	82
-PF3D7_1202200	mitochondrial phosphate carrier protein	-1	1	0	0	108
-PF3D7_1241200	conserved Plasmodium protein, unknown function	-1	1	0	0	223
-PF3D7_1243000	syntaxin-16, putative	-1	0	0	1	27
-PF3D7_1249200	conserved Plasmodium protein, unknown function	-1	1	0	0	177
-PF3D7_1304100	DNA ligase I	-1	0	0	1	72
-PF3D7_1322300	BRCT domain-containing protein, putative	-1	1	0	0	146
-PF3D7_1343500	conserved protein, unknown function	-1	1	0	1	27
-PF3D7_1415800	ribosomal RNA small subunit methyltransferase A1	-1	1	0	0	100
-PF3D7_1430500	conserved Plasmodium protein, unknown function	-1	1	0	0	164
-PF3D7_1434200	calmodulin	-1	1	0	0	101
-PF3D7_1442000	ADP-ribosylation factor, putative	-1	1	0	0	48
-PF3D7_1473300	CKK domain-containing protein, putative	-1	1	0	0	165
-PF3D7_1477700	Plasmodium exported protein (PHISTa), unknown function	-1	1	0	0	125
-
+gene_id	description	deformable_vs_mixed	exfl_detected_vs_not_detected	infected_mosq_high_vs_low	oocy_detected_vs_not_detected
+PF3D7_1007300	RING zinc finger protein, putative	-1	-1	0	1
+PF3D7_1141600	dolichol-phosphate mannosyltransferase	-1	-1	0	1
+PF3D7_0109400	tubulin-specific chaperone a, putative	-1	0	0	1
+PF3D7_0209200	exosome complex component MTR3, putative	-1	0	0	1
+PF3D7_0210000	secretory complex protein 61 gamma subunit	-1	0	0	1
+PF3D7_0316300	inorganic pyrophosphatase, putative	-1	0	0	1
+PF3D7_0323600	BSD domain-containing protein, putative	-1	0	0	1
+PF3D7_0402400	Plasmodium exported protein, unknown function	-1	0	0	1
+PF3D7_0419700	apical merozoite protein	-1	0	0	1
+PF3D7_0502400	merozoite surface protein 8	-1	0	0	1
+PF3D7_0523600	conserved protein, unknown function	-1	0	0	1
+PF3D7_0608500	proteasome subunit alpha type-2, putative	-1	0	0	1
+PF3D7_0616300	conserved Plasmodium protein, unknown function	-1	0	0	1
+PF3D7_0620100	ATP synthase-associated protein, putative	-1	0	0	1
+PF3D7_0728000	eukaryotic translation initiation factor 2 subunit alpha	-1	0	0	1
+PF3D7_0812220	GTP-binding protein YihA3	-1	0	0	1
+PF3D7_0814900	superoxide dismutase [Fe]	-1	0	0	1
+PF3D7_0923600	lipoate-protein ligase 2	-1	0	0	1
+PF3D7_0929000	transcription initiation factor TFIID subunit 7, putative	-1	0	0	1
+PF3D7_1006800	G-strand-binding protein 2	-1	0	0	1
+PF3D7_1011500	conserved protein, unknown function	-1	0	0	1
+PF3D7_1030000	transcription elongation factor SPT4, putative	-1	0	0	1
+PF3D7_1104800	metabolite/drug transporter, putative	-1	0	0	1
+PF3D7_1135500	conserved protein, unknown function	-1	0	0	1
+PF3D7_1147700	ATP synthase subunit delta, mitochondrial, putative	-1	0	0	1
+PF3D7_1200900	Plasmodium exported protein (PHISTc), unknown function	-1	0	0	1
+PF3D7_1202200	mitochondrial phosphate carrier protein	-1	0	0	1
+PF3D7_1215000	thioredoxin peroxidase 2	-1	0	0	1
+PF3D7_1230300	subpellicular microtubule protein 2, putative	-1	0	0	1
+PF3D7_1231100	ras-related protein Rab-2	-1	0	0	1
+PF3D7_1233700	homocysteine S-methyltransferase, putative	-1	0	0	1
+PF3D7_1243000	syntaxin-16, putative	-1	0	0	1
+PF3D7_1246200	actin I	-1	0	0	1
+PF3D7_1301900	Plasmodium exported protein, unknown function	-1	0	0	1
+PF3D7_1323800	vacuolar protein sorting-associated protein 52, putative	-1	0	0	1
+PF3D7_1333000	20 kDa chaperonin	-1	0	0	1
+PF3D7_1352600	protein kinase, putative	-1	0	0	1
+PF3D7_1402500	ribosomal protein S27a, putative	-1	0	0	1
+PF3D7_1403600	selenoprotein	-1	0	0	1
+PF3D7_1406700	vacuolar protein sorting-associated protein 29	-1	0	0	1
+PF3D7_1418300	calmodulin, putative	-1	0	0	1
+PF3D7_1425000	Plasmodium RNA of unknown function RUF4	-1	0	0	1
+PF3D7_1426400	MORN repeat protein, putative	-1	0	0	1
+PF3D7_1436500	GTP-binding protein, putative	-1	0	0	1
+PF3D7_1465400	conserved protein, unknown function	-1	0	0	1
+PF3D7_0715100	C-Myc-binding protein, putative	-1	1	0	1
+PF3D7_0936500	virulence-associated protein 1	-1	1	0	1
+PF3D7_1118600	histone acetyltransferase MYST	-1	1	0	1
+PF3D7_1128400	bifunctional farnesyl/geranylgeranyl diphosphate synthase	-1	1	0	1
+PF3D7_1343500	conserved protein, unknown function	-1	1	0	1
+PF3D7_1344800	aspartate carbamoyltransferase	-1	1	0	1
+PF3D7_1434200	calmodulin	-1	1	0	1
+PF3D7_1460400	ubiquitin carboxyl-terminal hydrolase isozyme L3	-1	1	0	1
+PF3D7_1477700	Plasmodium exported protein (PHISTa), unknown function	-1	0	1	0
+PF3D7_0628400	protease, putative	-1	1	1	0
+PF3D7_1215500	conserved Plasmodium protein, unknown function	-1	-1	1	1
+PF3D7_0209700	RING zinc finger protein, putative	-1	0	1	1
+PF3D7_0219200	40S ribosomal protein S30	-1	0	1	1
+PF3D7_1007000	transmembrane protein 147, putative	-1	0	1	1
+PF3D7_1022100	methyltransferase, putative	-1	0	1	1
+PF3D7_1126900	small nuclear ribonucleoprotein F, putative	-1	0	1	1
+PF3D7_1128200	multiprotein-bridging factor 1, putative	-1	0	1	1
+PF3D7_1142500	60S ribosomal protein L28	-1	0	1	1
+PF3D7_1145700	bicoid-interacting protein BIN3, putative	-1	0	1	1
+PF3D7_1213700	DNA-directed RNA polymerases I, II, and III subunit RPABC3, putative	-1	0	1	1
+PF3D7_1307800	FHA domain-containing protein, putative	-1	0	1	1
+PF3D7_1311700	cytochrome c, putative	-1	0	1	1
+PF3D7_1314400	conserved protein, unknown function	-1	0	1	1
+PF3D7_1341200	60S ribosomal protein L18, putative	-1	0	1	1
+PF3D7_1420800	dynein light chain, putative	-1	0	1	1
+PF3D7_1461300	40S ribosomal protein S28e, putative	-1	0	1	1
+PF3D7_0218000	replication factor C subunit 2, putative	-1	1	1	1
+PF3D7_1350800	conserved Plasmodium protein, unknown function	-1	1	1	1
+PF3D7_1446600	centrin-2	-1	1	1	1

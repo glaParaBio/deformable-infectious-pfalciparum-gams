@@ -39,6 +39,69 @@ rule all:
         "results/voss_time_course_selected.pdf",
 
 
+rule microarray_filtering:
+    input:
+        varGenes=os.path.join(workflow.basedir, "ref_data/microarrays/auxiliary_files/varWithOldIds.txt"), 
+        rifinGenes=os.path.join(workflow.basedir, "ref_data/microarrays/auxiliary_files/rifinWithOldIds.txt"),
+        stevorGenes=os.path.join(workflow.basedir, "ref_data/microarrays/auxiliary_files/stevorWithOldIds.txt"),
+        allGenesOldIds=os.path.join(workflow.basedir, "ref_data/microarrays/auxiliary_files/allGenesOldIds.txt"),
+
+        daily=os.path.join(workflow.basedir, "ref_data/microarrays/rawInput/Daily.pcl.gz"),
+        leRoux=os.path.join(workflow.basedir, "ref_data/microarrays/rawInput/LeRoux.pcl.gz"),
+        milner=os.path.join(workflow.basedir, "ref_data/microarrays/rawInput/Malawi.pcl.gz"),
+        llinas3D7=os.path.join(workflow.basedir, "ref_data/microarrays/rawInput/3D7_Llinas.pcl.gz"),
+        llinasDD2=os.path.join(workflow.basedir, "ref_data/microarrays/rawInput/DD2_Llinas.pcl.gz"),
+        llinasHB3=os.path.join(workflow.basedir, "ref_data/microarrays/rawInput/HB3_Llinas.pcl.gz"),
+        hu=os.path.join(workflow.basedir, "ref_data/microarrays/rawInput/Hu.pcl.gz"),
+        leRoch=os.path.join(workflow.basedir, "ref_data/microarrays/rawInput/LeRoch.pcl.gz"),
+        young=os.path.join(workflow.basedir, "ref_data/microarrays/rawInput/young2005.pcl.gz"),
+        voss=os.path.join(workflow.basedir, "ref_data/microarrays/rawInput/vossMicroarray.txt.gz"),
+    output:
+        pcl=['microarrays/filteredInput/daily.pcl',
+        'microarrays/filteredInput/hu.pcl',
+        'microarrays/filteredInput/leRoch.pcl',
+        'microarrays/filteredInput/leRoux.pcl',
+        'microarrays/filteredInput/llinas3D7.pcl',
+        'microarrays/filteredInput/llinasDD2.pcl',
+        'microarrays/filteredInput/llinasHB3.pcl',
+        'microarrays/filteredInput/milner.pcl',
+        'microarrays/filteredInput/voss.pcl',
+        'microarrays/filteredInput/young.pcl'],
+    script:
+        'scripts/microarray_filtering.R'
+
+rule rename_joice:
+    input:
+        pcl='microarrays/filteredInput/leRoux.pcl',
+    output:
+        pcl='microarrays/filteredInput/Joiceetaldata.pcl',
+    shell:
+        r"""
+        mv {input.pcl} {output.pcl}
+        """
+
+rule makeClusters:
+    input:
+        allGenesOldIds=os.path.join(workflow.basedir, "ref_data/microarrays/auxiliary_files/allGenesOldIds.txt"),
+        geneProducts=os.path.join(workflow.basedir, "ref_data/microarrays/auxiliary_files/GeneProducts.txt"),
+        
+        young="microarrays/filteredInput/young.pcl",
+        hu="microarrays/filteredInput/hu.pcl",
+        leRoch="microarrays/filteredInput/leRoch.pcl",
+        llinas3D7="microarrays/filteredInput/llinas3D7.pcl",
+        llinasDD2="microarrays/filteredInput/llinasDD2.pcl",
+        llinasHB3="microarrays/filteredInput/llinasHB3.pcl",
+        voss="microarrays/filteredInput/voss.pcl",
+        daily="microarrays/filteredInput/daily.pcl",
+        leRoux="microarrays/filteredInput/Joiceetaldata.pcl",
+        milner="microarrays/filteredInput/milner.pcl",
+    output:
+        dendrogram='makeClusters/geneDendrogram.pdf',
+        geneData='makeClusters/geneData.tsv',
+    script:
+        'scripts/makeClusters.R'
+
+
 rule infection_time_course:
     input:
         ss=config["rna_ss"],
@@ -270,7 +333,7 @@ rm {rule}.$$.tmp.R
 rule gsea_clusters:
     input:
         dge="deseq/infect_dge.tsv.gz",
-        clstData=config["clstData"],
+        clstData='makeClusters/geneData.tsv',
         cluster_class=os.path.join(
             workflow.basedir, "ref_data/crouch_cluster_classification.tsv"
         ),
@@ -369,7 +432,7 @@ rm {rule}.$$.tmp.R
 rule gex_voss_vs_infectivity:
     input:
         rna_ss=config["rna_ss"],
-        vossPcl=config["vossPcl"],
+        vossPcl="microarrays/filteredInput/voss.pcl",
         infect="deseq/logcpm.tsv.gz",
     output:
         corr="results/voss_vs_infectivity_corr.pdf",
@@ -477,10 +540,7 @@ rm {rule}.$$.tmp.R
 rule selected_clusters_in_patients:
     input:
         dge="deseq/infect_dge.tsv.gz",
-        pcl=expand(
-            os.path.join(config["pclDir"], "%s.pcl" % x)
-            for x in ["Joiceetaldata", "milner"]
-        ),  # 'daily', 
+        pcl=['microarrays/filteredInput/Joiceetaldata.pcl', 'microarrays/filteredInput/milner.pcl'],
         gsea="gsea/gsea_clusters.tsv",
         allGenesOldIds=config["allGenesOldIds"],
     output:
@@ -599,8 +659,8 @@ rm {rule}.$$.tmp.R
 rule voss_time_course_heatmap:
     input:
         gsea="gsea/gsea_clusters.tsv",
-        vossPcl=config["vossPcl"],
-        clstData=config["clstData"],
+        vossPcl="microarrays/filteredInput/voss.pcl",
+        clstData='makeClusters/geneData.tsv',
         kc_class=os.path.join(
             workflow.basedir, "ref_data/crouch_cluster_classification.tsv"
         ),
@@ -653,10 +713,7 @@ rm {rule}.$$.tmp.R
 rule candidate_genes:
     input:
         ref="ref/Pfalciparum3D7.genes.tsv",
-        pcl=expand(
-            os.path.join(config["pclDir"], "%s.pcl" % x)
-            for x in ["Joiceetaldata", "milner"]
-        ),  # 'daily', 
+        pcl=['microarrays/filteredInput/Joiceetaldata.pcl', 'microarrays/filteredInput/milner.pcl'],
         candidate_genes=config["candidate_genes"],
         patient_order="patient_order.tmp.R",
     output:
@@ -723,7 +780,7 @@ cols <- rep('grey30', length(unique(dataset)))
 names(cols) <- unique(dataset)
 cls_col <- HeatmapAnnotation(df=data.table(dataset=dataset), show_legend=FALSE, annotation_label='', which='column', col=list(dataset=cols), simple_anno_size = unit(1, "mm"))
 
-pdf('{output.hm}', height=16/2.54, width=18/2.54)
+pdf('{output.hm}', height=nrow(mat)*0.4/2.54, width=18/2.54)
 Heatmap(mat, name='Z-score\nof gene\nexpression',
     column_split=dataset,
     column_title=unique(dataset),
