@@ -3,21 +3,21 @@ library(DescTools)
 
 #Read all PCL files and create lists for time course datasets
 
-young <- read.table("ref_data/microarrays/filteredInput/young.pcl", header=T, sep="\t", quote='')
-hu <- read.table("ref_data/microarrays/filteredInput/hu.pcl", header=T, sep="\t", quote='')
-leRoch <- read.table("ref_data/microarrays/filteredInput/leRoch.pcl", header=T, sep="\t", quote='')
-llinas3D7 <- read.table("ref_data/microarrays/filteredInput/llinas3D7.pcl", header=T, sep="\t", quote='')
-llinasDD2 <- read.table("ref_data/microarrays/filteredInput/llinasDD2.pcl", header=T, sep="\t", quote='')
-llinasHB3 <- read.table("ref_data/microarrays/filteredInput/llinasHB3.pcl", header=T, sep="\t", quote='')
-voss <- read.table("ref_data/microarrays/filteredInput/voss.pcl", header=T, sep="\t", quote="")
+young <- read.table(snakemake@input[['young']], header=T, sep="\t", quote='')
+hu <- read.table(snakemake@input[['hu']], header=T, sep="\t", quote='')
+leRoch <- read.table(snakemake@input[['leRoch']], header=T, sep="\t", quote='')
+llinas3D7 <- read.table(snakemake@input[['llinas3D7']], header=T, sep="\t", quote='')
+llinasDD2 <- read.table(snakemake@input[['llinasDD2']], header=T, sep="\t", quote='')
+llinasHB3 <- read.table(snakemake@input[['llinasHB3']], header=T, sep="\t", quote='')
+voss <- read.table(snakemake@input[['voss']], header=T, sep="\t", quote="")
 
 timecourse <- list(young, hu, leRoch, llinas3D7, llinasDD2, llinasHB3, voss)
 
 #Read all PCL files and create lists for in vivo datasets
 
-daily <- read.table("ref_data/microarrays/filteredInput/daily.pcl", header=T, sep="\t", quote='')
-leRoux <- read.table("ref_data/microarrays/filteredInput/leRoux.pcl", header=T, sep="\t", quote='')
-milner <- read.table("ref_data/microarrays/filteredInput/milner.pcl", header=T, sep="\t", quote='')
+daily <- read.table(snakemake@input[['daily']], header=T, sep="\t", quote='')
+leRoux <- read.table(snakemake@input[['leRoux']], header=T, sep="\t", quote='')
+milner <- read.table(snakemake@input[['milner']], header=T, sep="\t", quote='')
 
 inVivo <- list(daily, leRoux, milner)
 
@@ -38,7 +38,6 @@ preProcess <- function (df) {
   mat <- ImputeKnn(mat, k=10, scale=F)
   return (mat)
 }
-
 #Process timecourse datasets
 timecourse <- lapply(timecourse, preProcess)
 names(timecourse) <- c("young", "hu", "leRoch", "llinas3D7", "llinasDD2", "llinasHB3", "voss")
@@ -139,7 +138,7 @@ genes <- as.data.frame(names(clusterWithVoss))
 colnames(genes) <- "GeneIds"
 
 hrdWithVoss <- set_labels(hrdWithVoss, rep(NA, nleaves(hrdWithVoss)))
-pdf('output/geneDendrogram.pdf', width=18/2.54, height=12/2.54)
+pdf(snakemake@output[['dendrogram']], width=18/2.54, height=12/2.54)
 plot(hrdWithVoss)
 dev.off()
 
@@ -152,7 +151,7 @@ invertList <- function (i, x, n) {
   lapply(x[[i]], function(y, n){newList <- n; names(newList) <- y; return(newList)}, n=n[[i]])
 }
 
-idMappings <- read.table("ref_data/microarrays/auxiliary_files/allGenesOldIds.txt", header=T, sep="\t", quote="")
+idMappings <- read.table(snakemake@input[['allGenesOldIds']], header=T, sep="\t", quote="")
 oldIdList <- lapply(as.character(idMappings$Previous.ID.s.), getOldIds)
 names(oldIdList) <- idMappings$Gene.ID
 
@@ -160,12 +159,12 @@ oldIdList <- unlist(lapply(seq_along(oldIdList), invertList, x=oldIdList, n=name
 
 #Gene Products
 
-allGeneProducts <- read.table("ref_data/microarrays/auxiliary_files/GeneProducts.txt", sep="\t", header=T, quote="")
+allGeneProducts <- read.table(snakemake@input[['geneProducts']], sep="\t", header=T, quote="")
 
 geneData <- merge(genes, allGeneProducts, by.x="GeneIds", by.y="X.Gene.ID.", no.dups=F)
 geneData <- as.data.frame(cbind(as.character(geneData$GeneIds), as.character(geneData$X.Product.Description.)))
 
 geneData$Cluster <- unlist(lapply(as.character(geneData$V1), function(x, clusters) {return (clusters[x])}, clusters=clusterWithVoss))
 geneData <- unique(geneData)
-write.table(geneData, "ref_data/geneData.tsv", sep='\t', quote=F, row.names=F)
+write.table(geneData, snakemake@output[['geneData']], sep='\t', quote=F, row.names=F)
 
