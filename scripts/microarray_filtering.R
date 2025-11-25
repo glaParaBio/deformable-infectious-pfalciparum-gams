@@ -17,6 +17,8 @@
 # these must all be the same.  We will therefore need to convert all gene ids
 # to current ids.
 
+library(DescTools)
+
 #Obtain Lists of *var*, *rifin* and *stevor* genes
 
 getOldIds <- function(x) {
@@ -24,13 +26,16 @@ getOldIds <- function(x) {
   return (oldIdList)
 }
 
-varGenes <- read.table("ref_data/microarrays/rawInput/varWithOldIds.txt", header=T, sep="\t", quote="")
+#varGenes <- read.table("ref_data/microarrays/auxiliary_files/varWithOldIds.txt", header=T, sep="\t", quote="")
+varGenes <- read.table(snakemake@input[['varGenes']], header=T, sep="\t", quote="")
 oldVarIds <- unlist(lapply(as.character(varGenes$Previous.ID.s.), getOldIds))
 
-rifinGenes <- read.table("ref_data/microarrays/rawInput/rifinWithOldIds.txt", header=T, sep="\t", quote="")
+#rifinGenes <- read.table("ref_data/microarrays/auxiliary_files/rifinWithOldIds.txt", header=T, sep="\t", quote="")
+rifinGenes <- read.table(snakemake@input[['rifinGenes']], header=T, sep="\t", quote="")
 oldVarIds <- c(oldVarIds, unlist(lapply(as.character(rifinGenes$Previous.ID.s.), getOldIds)))
 
-stevorGenes <- read.table("ref_data/microarrays/rawInput/stevorWithOldIds.txt", header=T, sep="\t", quote="")
+#stevorGenes <- read.table("ref_data/microarrays/auxiliary_files/stevorWithOldIds.txt", header=T, sep="\t", quote="")
+stevorGenes <- read.table(snakemake@input[['stevorGenes']], header=T, sep="\t", quote="")
 oldVarIds <- c(oldVarIds, unlist(lapply(as.character(stevorGenes$Previous.ID.s.), getOldIds)))
 
 oldVarIds <- unique(oldVarIds)
@@ -70,57 +75,64 @@ invertList <- function (i, x, n) {
   lapply(x[[i]], function(y, n){newList <- n; names(newList) <- y; return(newList)}, n=n[[i]])
 }
 
-idMappings <- read.table("ref_data/microarrays/auxiliary_files/allGenesOldIds.txt", header=T, sep="\t", quote="")
+
+preProcess <- function (df) {
+  colnames(df)[1] <- "X"
+  df <- aggregate.data.frame(df, by=list(df$X), FUN=mean)
+  row.names(df) <- df$Group.1
+  df <- df[, 5:ncol(df)]
+  mat <- scale(df)
+  mat <- ImputeKnn(mat, k=10, scale=F)
+  out <- data.frame(gene_id=rownames(mat), mat)
+  return (out)
+}
+
+#idMappings <- read.table("ref_data/microarrays/auxiliary_files/allGenesOldIds.txt", header=T, sep="\t", quote="")
+idMappings <- read.table(snakemake@input[['allGenesOldIds']], header=T, sep="\t", quote="")
 oldIdList <- lapply(as.character(idMappings$Previous.ID.s.), getOldIds)
 names(oldIdList) <- idMappings$Gene.ID
 
 oldIdList <- unlist(lapply(seq_along(oldIdList), invertList, x=oldIdList, n=names(oldIdList)))
 
-inVivo <- list(daily=read.table("ref_data/microarrays/rawInput/Daily.pcl.gz", sep="\t", quote="", header=T),
-               leRoux=read.table("ref_data/microarrays/rawInput/LeRoux.pcl.gz", sep="\t", quote="", header=T), 
-               milner=read.table("ref_data/microarrays/rawInput/Malawi.pcl.gz", sep="\t", quote="", header=T))
-
+inVivo <- list(daily=read.table(snakemake@input[['daily']], sep="\t", quote="", header=T),
+               leRoux=read.table(snakemake@input[['leRoux']], sep="\t", quote="", header=T), 
+               milner=read.table(snakemake@input[['milner']], sep="\t", quote="", header=T))
 inVivo <- lapply(inVivo, datasetFilter, oldIds=oldVarIds)
-
 keep <- getKeepList(inVivo, 2)
-
 inVivo <- lapply(inVivo, filterDataByCount, keep=keep)
-
 inVivo <- lapply(inVivo, idConvert, oldIdList=oldIdList)
+# inVivo <- lapply(inVivo, preProcess)
 
-timecourse <- list(llinas3D7=read.table("ref_data/microarrays/rawInput/3D7_Llinas.pcl.gz", sep="\t", quote="", header=T),
-                   llinasDD2=read.table("ref_data/microarrays/rawInput/DD2_Llinas.pcl.gz", sep="\t", quote="", header=T),
-                   llinasHB3=read.table("ref_data/microarrays/rawInput/HB3_Llinas.pcl.gz", sep="\t", quote="", header=T),
-                   hu=read.table("ref_data/microarrays/rawInput/Hu.pcl.gz", sep="\t", quote="", header=T),
-                   leRoch=read.table("ref_data/microarrays/rawInput/LeRoch.pcl.gz", sep="\t", quote="", header=T),
-                   young=read.table("ref_data/microarrays/rawInput/young2005.pcl.gz", sep="\t", quote="", header=T))
-
+timecourse <- list(llinas3D7=read.table(snakemake@input[['llinas3D7']], sep="\t", quote="", header=T),
+                   llinasDD2=read.table(snakemake@input[['llinasDD2']], sep="\t", quote="", header=T),
+                   llinasHB3=read.table(snakemake@input[['llinasHB3']], sep="\t", quote="", header=T),
+                   hu=read.table(snakemake@input[['hu']], sep="\t", quote="", header=T),
+                   leRoch=read.table(snakemake@input[['leRoch']], sep="\t", quote="", header=T),
+                   young=read.table(snakemake@input[['young']], sep="\t", quote="", header=T))
 timecourse <- lapply(timecourse, datasetFilter, oldIds=oldVarIds)
-
 keep <- getKeepList(timecourse, 3)
-
 timecourse <- lapply(timecourse, filterDataByCount, keep=keep)
-
 timecourse <- lapply(timecourse, idConvert, oldIdList=oldIdList)
 
-voss <- read.table("ref_data/microarrays/rawInput/vossMicroarray.txt.gz", sep="\t", quote="", header=T)
+voss <- read.table(snakemake@input[['voss']], sep="\t", quote="", header=T)
 voss <- cbind(voss[,c(1,3:13)])
-
 voss <- voss[which(voss$geneid %ni% varGenes$Gene.ID),]
 voss <- voss[which(voss$geneid %ni% rifinGenes$Gene.ID),]
 voss <- voss[which(voss$geneid %ni% stevorGenes$Gene.ID),]
-
 keep <- getKeepList(timecourse, 3)
 voss <- filterDataByCount(voss, keep=keep)
 
-dir.create('ref_data/microarrays/filteredInput', recursive=TRUE, showWarnings=FALSE)
+# timecourse[['voss']] <- voss
+# timecourse <- lapply(timecourse, preProcess)
+
+# dir.create('ref_data/microarrays/filteredInput', recursive=TRUE, showWarnings=FALSE)
 saveTable <- function(i, datasets, names) {
   dataset <- datasets[[i]]
   name = names(datasets)[i]
   cols <- colnames(dataset)
   dataset <-cbind(dataset[,1], NA, rep(1, nrow(dataset)), dataset[,2:ncol(dataset)])
   colnames(dataset) <- c(cols[1], "name", "GWeight", cols[2:length(cols)])
-  write.table(dataset, paste(c("ref_data/microarrays/filteredInput/", name, ".pcl"), collapse=""), sep="\t", quote=F, col.names=T, row.names=F, na="")
+  write.table(dataset, paste(c("microarrays/filteredInput/", name, ".pcl"), collapse=""), sep="\t", quote=F, col.names=T, row.names=F, na="")
 }
 
 invisible(lapply(seq_along(inVivo), saveTable, datasets=inVivo, names=names(inVivo)))
@@ -129,4 +141,4 @@ invisible(lapply(seq_along(timecourse), saveTable, datasets=timecourse, names=na
 cols <- colnames(voss)
 voss <- cbind(voss[,1], NA, rep(1, nrow(voss)), voss[,2:ncol(voss)])
 colnames(voss) <- c(cols[1], "name", "GWeight", cols[2:length(cols)])
-write.table(voss, "ref_data/microarrays/filteredInput/voss.pcl", sep="\t", quote=F, col.names=T, row.names=F, na="")
+write.table(voss, "microarrays/filteredInput/voss.pcl", sep="\t", quote=F, col.names=T, row.names=F, na="")
