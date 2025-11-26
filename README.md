@@ -26,9 +26,8 @@ snakemake -p -n -j 10 \
     --latency-wait 60 \
     -C rna_ss=$PWD/ref_data/deformability_infection_data.tsv \
        counts=$PWD/ref_data/counts \
-       # candidate_genes=$PWD/ref_data/candidate_genes.tsv \
        allGenesOldIds=$PWD/ref_data/microarrays/auxiliary_files/allGenesOldIds.txt \
-       pelle=$PWD/ref_data/pelle_clusters_plasmodb.tsv
+       pelle=$PWD/ref_data/pelle_clusters_plasmodb.tsv \
     -d output
 ```
 
