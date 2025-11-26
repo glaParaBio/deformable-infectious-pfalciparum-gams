@@ -26,7 +26,7 @@ rule all:
         "results/gsea_clusters.pdf",
         ## Figure 5
         "results/selected_clusters_patients.pdf",
-        "results/candidate_genes_patients.pdf",
+        "candidate_genes/candidate_genes_patients.pdf",
         ## Supp Table and Figures
         "deseq/infect_dge.tsv.gz",
         "deseq/overlapping_dge.tsv.gz",
@@ -736,15 +736,33 @@ Rscript {rule}.$$.tmp.R
 rm {rule}.$$.tmp.R
         """
 
+rule select_candidate_genes:
+    input:
+        ovl="deseq/overlapping_dge.tsv.gz",
+    output:
+        cg="candidate_genes/candidate_genes.tsv",
+    shell:
+        r"""
+cat <<'EOF' > {rule}.$$.tmp.R
+library(data.table)
+
+ovl <- fread('{input.ovl}')
+cg <- ovl[deformable_vs_mixed == -1 & (exfl_detected_vs_not_detected == 1 | infected_mosq_high_vs_low == 1 | oocy_detected_vs_not_detected == 1)]
+fwrite(cg, '{output.cg}', sep='\t')
+
+EOF
+Rscript {rule}.$$.tmp.R
+rm {rule}.$$.tmp.R
+        """
 
 rule candidate_genes:
     input:
         ref="ref/Pfalciparum3D7.genes.tsv",
+        candidate_genes="candidate_genes/candidate_genes.tsv",
         pcl=['microarrays/filteredInput/Joiceetaldata.pcl', 'microarrays/filteredInput/milner.pcl'],
-        candidate_genes=config["candidate_genes"],
         patient_order="patient_order.tmp.R",
     output:
-        hm="results/candidate_genes_patients.pdf",
+        hm="candidate_genes/candidate_genes_patients.pdf",
     shell:
         r"""
 cat <<'EOF' > {rule}.$$.tmp.R
