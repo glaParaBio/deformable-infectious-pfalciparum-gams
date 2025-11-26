@@ -1,7 +1,7 @@
 <!-- vim-markdown-toc GFM -->
 
-    * [Set up environment](#set-up-environment)
-    * [Run workflow](#run-workflow)
+* [Set up environment](#set-up-environment)
+* [Run workflow](#run-workflow)
 * [TODO:](#todo)
 
 <!-- vim-markdown-toc -->
@@ -33,7 +33,7 @@ snakemake -p -n -j 10 \
 
 For `pelle_clusters_plasmodb.tsv` see https://github.com/glaParaBio/dariober/tree/master/unsorted/20210406_annotate_pelle
 
-# TODO:
+## TODO:
 
 * Include code for generating `ref_data/peaksofMeanAll.tsv`
 
